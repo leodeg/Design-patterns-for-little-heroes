@@ -6,7 +6,7 @@
 
 1. Основы ООП
     - [ ] Отношения между классами
-    - [x] [Coupling & Cohesion](/ООП/Coupling & Cohesion.md)
+    - [x] [Coupling & Cohesion](ООП/Coupling%20&%20Cohesion.md)
     - [x] [Инкапсуляция](ООП/Инкапсуляция.md)
     - [ ] Наследование
     - [ ] Полиморфизм
