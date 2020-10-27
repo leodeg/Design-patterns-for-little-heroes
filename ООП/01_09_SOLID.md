@@ -418,20 +418,307 @@ class MainClass {
 
 Данный принцип очень похож на **Принцип единственной ответственности**, только относится к интерфейсам.
 
+К примеру необходимо создать интерфейс для супергероя. Пораскинув мыслями приходим к тому, что супергерой должен уметь: бегать, летать, видеть сквозь стены, иметь хорошие рефлексы и должен уметь взламывать компьютер.
 
+```c#
+interface ISuperHero {
+    void Run ();
+    void Flight ();
+    void XRayVision ();
+    void Reflexes ();
+    void HackComputer ();
+}
+```
 
-Запомните, что интефрейс должен определять **клиент**. 
+Создаем несколько популярных героев:
+
+```c#
+class Superman : ISuperHero {
+    public void Run () {
+        Console.WriteLine ("Бежит быстрее ветра.");
+    }
+    
+    public void Flight () {
+        Console.WriteLine ("Летит со скоростью света.");
+    }
+
+    public void XRayVision () {
+        Console.WriteLine ("Смотрит сквозь стены.");
+    }
+
+    public void Reflexes () {
+        Console.WriteLine ("Уклоняется от пуль.");
+    }
+
+    public void HackComputer () {
+        throw new NotImplementedException ();
+    }
+}
+
+class Batman : ISuperHero {
+    public void Run () {
+        Console.WriteLine ("Просто бежит.");
+    }
+    
+    public void Flight () {
+        Console.WriteLine ("Планирует при помощи плаща.");
+    }
+
+    public void XRayVision () {
+        Console.WriteLine ("Смотрит сквозь стены при помощи специального оборудования.");
+    }
+
+    public void Reflexes () {
+        Console.WriteLine ("Уклоняется от ударов врагов.");
+    }
+
+    public void HackComputer () {
+        Console.WriteLine ("Взламывает компьютер.");
+    }
+}
+```
+
+И видно не все герои умеют делать то, что предлагает интерфейс. К примеру супермен не умеет взламывать компьютер, а бэтмен не умеет летать. Конечно бэтмен может парить при помощи планера и в данном случае можно выкрутиться реализовав данный метод. Тоже самое можно сделать и с X-Ray Vision, так как бэтмен может использовать специальное оборудование для этого.
+
+Но некоторые герои совсем не обладают некотрыми способностями.
+
+```c#
+class Flash : ISuperHero {
+    public void Run () {
+        Console.WriteLine ("Бежит быстрее скорости света.");
+    }
+    
+    public void Flight () {
+        throw new NotImplementedException ();
+    }
+
+    public void XRayVision () {
+        throw new NotImplementedException ();
+    }
+
+    public void Reflexes () {
+        Console.WriteLine ("Уклоняется от ударов супермена.");
+    }
+
+    public void HackComputer () {
+        throw new NotImplementedException ();
+    }
+}
+```
+
+Флэш не умеет летать, видеть сквозь стены и взламывать компьютер.
+
+Чем больше будет таких героев, тем больше шанс вызвать метод и получить исключение во время работы программы.
+
+**Пинцип разделения интерфейсов** подталкивает нас разделить данный интерфейс на несколько интерфейсов.
+
+```c#
+interface IFlight {
+    void Flight ();
+}
+
+interface IRun {
+    void Run ();
+}
+
+interface IXRayVision {
+    void XRayVision ();
+}
+
+interface IHackComputer {
+    void HackComputer ();
+}
+```
+
+Конечно, если необходимо обобщить тип супергероев, которые владеют несколькими способностями, можно создать интфейс и наследоваться от нескольких других интерфейсов:
+
+```c#
+interface IHero : IRun { }
+interface ISuperHero : IFlight, IRun { }
+interface ITechHero : IXRayVision, IHackComputer { }
+```
+
+Пример на супергероях:
+
+```c#
+class Superman : ISuperHero, IXRayVision {
+    public void Run () {
+        Console.WriteLine ("Бежит быстрее ветра.");
+    }
+    
+    public void Flight () {
+        Console.WriteLine ("Летит со скоростью света.");
+    }
+
+    public void XRayVision () {
+        Console.WriteLine ("Смотрит сквозь стены.");
+    }
+}
+
+class Batman : IHero, ITechHero {
+    public void Run () {
+        Console.WriteLine ("Просто бежит.");
+    }
+
+    public void XRayVision () {
+        Console.WriteLine ("Смотрит сквозь стены при помощи специального оборудования.");
+    }
+
+    public void HackComputer () {
+        Console.WriteLine ("Взламывает компьютер.");
+    }
+}
+
+class Programs {
+    public static void Main (string[] args) {
+        ITechHero techHero = new Batman ();
+        techHero.HackComputer ();
+        techHero.XRayVision ();
+
+        ISuperHero superHero = new Superman ();
+        superHero.Flight ();
+        superHero.Run ();
+    }
+}
+```
+
+Запомните, что интефрейс должен определять **клиент**. Если некоторые методы ему не нужны, не нужно ему их навязывать.
 
 ## Принцип инверсии зависимостей (dependency inversion principle)
 
 > - Модули верхних уровней не должны зависеть от модулей нижних уровней. Оба типа модулей должны зависеть от абстракций.
 > - Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций.
 >
-> 
+> [Wikipedia](https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF_%D0%B8%D0%BD%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B8_%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B5%D0%B9)
 
+Данный принцип наследует **Принцип единой остветственности** и **Принцип подстановки Барбары Лисков**.
 
+К примеру необходимо уведомлять клиентов о каких-либо событиях или новостях. В программе создано несколько способов уведомлений.
 
+```c#
+class EmailNotificator  {
+    public  override  void  Notify  (string message)  { 
+        // Отправить сообщение на email
+    }
+}
 
+class PhoneNotificator  {
+    public  override  void  Notify  (string message)  { 
+        // Отправить сообщение на телефон
+    }
+}
+
+class FacebookNotificator  {
+    public  override  void  Notify  (string message)  { 
+        // Отправить сообщение в мессенджер facebook
+    }
+}
+```
+
+За отправку отвечает один класс **Notificator**:
+
+```c#
+enum NotificationType {
+    Email,
+    Phone,
+    Facebook
+}
+
+class Notificator {
+    public void NotifyClients (string message, NotificationType type) {
+        switch (type) {
+            case NotificationType.Email:
+                new EmailNotificator().Notify(message);
+            case NotificationType.Phone:
+                new PhoneNotificator().Notify(message);
+            case NotificationType.Facebook:
+                new FacebookNotificator().Notify(message);
+        }
+    }
+}
+```
+
+Из-за того, что способов уведомлений несколько, приходится передавать и проверять флаги.
+
+Чтобы избежать постоянной проверки флагов необходимо создать общий интерфейс для всех классов, которые занимаются уведомлениями. 
+
+```c#
+interface INotifier {
+	void Notify (string message);
+}
+
+class EmailNotifier : INotifier  {
+    public void  Notify (string message)  { 
+        Console.WriteLine ($"Email Notification: {message}");
+    }
+}
+
+class PhoneNotifier : INotifier  {
+    public void  Notify (string message)  { 
+        Console.WriteLine ($"Phone Notification: {message}");
+    }
+}
+
+class FacebookNotifier : INotifier  {
+    public void  Notify (string message)  { 
+        Console.WriteLine ($"Facebook Notification: {message}");
+    }
+}
+```
+
+Контейнером будет служить **NotificationManager**. Вместо него можно использовать шаблон **декоратор**, но пока будет использован просто список.
+
+```c#
+interface INotificationsManager {
+    void AddNotifier (INotifier notifier);
+    void NotifyClients (string message);
+}
+
+class NotificationsManager : INotificationsManager {
+    private List<INotifier> notificators;
+
+    public NotificationsManager () {
+        notificators = new List<INotifier> ();
+    }
+
+    public void AddNotifier (INotifier notificator) {
+        notificators.Add(notificator);
+    }
+
+    public void NotifyClients (string message) {
+        if (notificators == null || notificators.Count == 0) 
+            throw new InvalidOperationException ("Notifier(s) is not found.");
+        
+        foreach (var notificator in notificators)
+            notificator.Notify (message);
+    }
+}
+
+class Programs {
+    public static void Main (string[] args) {
+        INotificationsManager manager = new NotificationsManager ();
+        manager.AddNotifier (new EmailNotifier ());
+        manager.AddNotifier (new PhoneNotifier ());
+        manager.NotifyClients ("Hello!");
+
+        Console.WriteLine ();
+        manager.AddNotifier (new FacebookNotifier ());
+        manager.NotifyClients ("Hello!");
+        
+        // Вывод на консоль:
+		// Email Notification: Hello!
+		// Phone Notification: Hello!
+		// 
+		// Email Notification: Hello!
+		// Phone Notification: Hello!
+		// Facebook Notification: Hello!
+    }
+}
+```
+
+**DIP** позволяет уменьшить **зацепление** (зависимость) одних модулей от других, используя вместо конкретной реализации абстрактные классы или интерфейсы. Благодаря интерфейсам неважно какая реализация будет использована, главное чтобы она поддерживал определенный интерфейс. Благодаря этому, вместо одного модуля можно поместить другой модуль во время выполнения не сломав программу.
+
+Чтобы следовать **DIP** необходимо: организовывать четкую иерархию классов, реализовывать связи и использовать классы через **интерфейсы**.
 
 ## Дополнительный материал
 
