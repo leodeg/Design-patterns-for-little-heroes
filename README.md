@@ -18,15 +18,15 @@
     - [ ] YAGNI
 2. Поведенческие шаблоны проектирования
     - [ ] Observer *
-    - [ ] Iterator *
+    - [ ] [Iterator](Behavioural/Iterator.ipynb)
     - [ ] Command
-    - [ ] Strategy *
-    - [ ] State *
+    - [ ] [Strategy](Behavioural/Strategy.ipynb)
+    - [ ] [State](Behavioural/State.ipynb)
     - [ ] Template
     - [ ] Interpreter
     - [ ] Mediator
     - [ ] Chain of responsibility
-    - [ ] Memento
+    - [ ] [Memento](Behavioural/Memento.ipynb)
     - [ ] Visitor
 4. Порождающие шаблоны проектирования
     - [ ] Factory Method *
