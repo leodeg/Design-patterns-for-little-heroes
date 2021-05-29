@@ -19,10 +19,10 @@
 2. Поведенческие шаблоны проектирования
     - [ ] Observer *
     - [ ] [Iterator](Behavioural/Iterator.ipynb)
-    - [ ] Command
+    - [ ] [Command](Behavioural/Command.ipynb)
     - [ ] [Strategy](Behavioural/Strategy.ipynb)
     - [ ] [State](Behavioural/State.ipynb)
-    - [ ] Template
+    - [ ] [Template Method](Behavioural/TemplateMethod.ipynb)
     - [ ] Interpreter
     - [ ] Mediator
     - [ ] Chain of responsibility
