@@ -17,14 +17,14 @@
     - [ ] KISS
     - [ ] YAGNI
 2. Поведенческие шаблоны проектирования
-    - [ ] Observer *
+    - [ ] [Observer](Behavioural/Observer.ipynb)
     - [ ] [Iterator](Behavioural/Iterator.ipynb)
     - [ ] [Command](Behavioural/Command.ipynb)
     - [ ] [Strategy](Behavioural/Strategy.ipynb)
     - [ ] [State](Behavioural/State.ipynb)
     - [ ] [Template Method](Behavioural/TemplateMethod.ipynb)
     - [ ] Interpreter
-    - [ ] Mediator
+    - [ ] [Mediator](Behavioural/Mediator.ipynb)
     - [ ] Chain of responsibility
     - [ ] [Memento](Behavioural/Memento.ipynb)
     - [ ] Visitor
