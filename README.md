@@ -17,33 +17,33 @@
     - [ ] KISS
     - [ ] YAGNI
 2. Поведенческие шаблоны проектирования
-    - [ ] [Observer](Behavioural/Observer.ipynb)
-    - [ ] [Iterator](Behavioural/Iterator.ipynb)
+    - [ ] [Observer*](Behavioural/Observer.ipynb)
+    - [ ] [Iterator*](Behavioural/Iterator.ipynb)
     - [ ] [Command](Behavioural/Command.ipynb)
-    - [ ] [Strategy](Behavioural/Strategy.ipynb)
-    - [ ] [State](Behavioural/State.ipynb)
+    - [ ] [Strategy*](Behavioural/Strategy.ipynb)
+    - [ ] [State*](Behavioural/State.ipynb)
     - [ ] [Template Method](Behavioural/TemplateMethod.ipynb)
     - [ ] Interpreter
     - [ ] [Mediator](Behavioural/Mediator.ipynb)
-    - [ ] Chain of responsibility
+    - [ ] [Chain of responsibility](Behavioural/ChainOfResponsibility.ipynb)
     - [ ] [Memento](Behavioural/Memento.ipynb)
-    - [ ] Visitor
+    - [ ] [Visitor](Behavioural/Visitor.ipynb)
 4. Порождающие шаблоны проектирования
-    - [ ] Factory Method *
-    - [ ] Abstract Factory *
+    - [ ] Factory Method*
+    - [ ] Abstract Factory*
     - [ ] Singleton
     - [ ] Prototype
     - [ ] Object Pool
     - [ ] Builder
 6. Структурные шаблоны проектирования
-    - [ ] Facade *
-    - [ ] Composite
+    - [ ] Facade*
+    - [ ] [Composite](Structural/Composite.ipynb)
     - [ ] Component
-    - [ ] Adapter *
-    - [ ] Proxy
-    - [ ] Bridge
-    - [ ] Decorator *
-    - [ ] Flyweight
+    - [ ] Adapter*
+    - [ ] [Proxy](Structural/Proxy.ipynb)
+    - [ ] [Bridge](Structural/Bridge.ipynb)
+    - [ ] [Decorator*](Structural/Decorator.ipynb)
+    - [ ] [Flyweight](Structural/Flyweight.ipynb)
 7. Архитектурные шаблоны проектирования
     - [ ] Model-View-Controller (MVC)
     - [ ] Model-View-ViewModel (MVVM)
